@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.accenture.codingtest.springbootcodingtest.entity.Task;
+import com.accenture.codingtest.springbootcodingtest.enums.STATUS_ENUMS;
 import com.accenture.codingtest.springbootcodingtest.repository.ProjectRepository;
 import com.accenture.codingtest.springbootcodingtest.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,12 @@ public class TaskService{
 		existingTask.setTitle(task.getTitle());
 		existingTask.setDescription(task.getDescription());
 		existingTask.setStatus(task.getStatus());
+		return taskRepository.save(existingTask);
+	}
+
+	public Task updateStatus(String taskId, STATUS_ENUMS toStatus) {
+		Task existingTask = taskRepository.findById(taskId).orElseThrow(() -> new RuntimeException("task not found for id: "+taskId));
+		existingTask.setStatus(toStatus);
 		return taskRepository.save(existingTask);
 	}
 }

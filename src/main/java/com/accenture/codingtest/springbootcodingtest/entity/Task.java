@@ -1,8 +1,11 @@
 package com.accenture.codingtest.springbootcodingtest.entity;
 
+import com.accenture.codingtest.springbootcodingtest.enums.STATUS_ENUMS;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+
+import static com.accenture.codingtest.springbootcodingtest.enums.STATUS_ENUMS.NOT_STARTED;
 
 @Entity
 public class Task {
@@ -19,8 +22,10 @@ public class Task {
     @Column(name = "description")
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private String status;
+    private STATUS_ENUMS status=NOT_STARTED;
+
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
@@ -54,11 +59,11 @@ public class Task {
         this.description = description;
     }
 
-    public String getStatus() {
+    public STATUS_ENUMS getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(STATUS_ENUMS status) {
         this.status = status;
     }
 
@@ -77,5 +82,17 @@ public class Task {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", user=" + user +
+                ", project=" + project +
+                '}';
     }
 }

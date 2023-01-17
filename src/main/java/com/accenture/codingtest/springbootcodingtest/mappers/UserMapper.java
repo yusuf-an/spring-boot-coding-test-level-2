@@ -10,6 +10,7 @@ public class UserMapper {
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setUsername(user.getUsername());
+        userDto.setRole(user.getRole());
         return userDto;
     }
 
@@ -18,6 +19,7 @@ public class UserMapper {
         user.setId(userDto.getId());
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
+        user.setRole(userDto.getRole());
         return user;
     }
 
