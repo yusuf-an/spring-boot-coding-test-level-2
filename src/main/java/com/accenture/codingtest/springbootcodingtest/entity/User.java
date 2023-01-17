@@ -1,4 +1,4 @@
-package com.accenture.codingtest.springbootcodingtest.entities;
+package com.accenture.codingtest.springbootcodingtest.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -12,13 +12,10 @@ import java.util.UUID;
 public class User {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "id", nullable = false)
-    private UUID id;
+    @Column(name = "id", length = 40)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
+    private String id;
 
     @Column(unique=true,nullable = false)
     private String username;
@@ -26,11 +23,11 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
