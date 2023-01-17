@@ -3,6 +3,7 @@ package com.accenture.codingtest.springbootcodingtest.mappers;
 import com.accenture.codingtest.springbootcodingtest.entity.Project;
 import com.accenture.codingtest.springbootcodingtest.entity.Task;
 import com.accenture.codingtest.springbootcodingtest.entity.User;
+import com.accenture.codingtest.springbootcodingtest.enums.STATUS_ENUMS;
 import com.accenture.codingtest.springbootcodingtest.model.TaskDto;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +32,7 @@ public class TaskMapper {
         task.setId(taskDto.getId());
         task.setTitle(taskDto.getTitle());
         task.setDescription(taskDto.getDescription());
-        task.setStatus(taskDto.getStatus());
+        task.setStatus(STATUS_ENUMS.valueOf(taskDto.getStatus()));
         task.setProject(project);
         task.setUser(user);
         return task;

@@ -1,6 +1,9 @@
 package com.accenture.codingtest.springbootcodingtest.model;
 
 
+import com.accenture.codingtest.springbootcodingtest.enums.ROLES_ENUMS;
+
+import static com.accenture.codingtest.springbootcodingtest.enums.ROLES_ENUMS.DEFAULT_USER;
 
 public class UserDto {
 
@@ -34,5 +37,15 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ROLES_ENUMS role=DEFAULT_USER;
+
+    public ROLES_ENUMS getRole() {
+        return role;
+    }
+
+    public void setRole(ROLES_ENUMS role) {
+        this.role = role;
     }
 }
