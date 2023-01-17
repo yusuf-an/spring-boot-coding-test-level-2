@@ -2,6 +2,8 @@ package com.accenture.codingtest.springbootcodingtest.controller;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.accenture.codingtest.springbootcodingtest.enums.STATUS_ENUMS;
 import com.accenture.codingtest.springbootcodingtest.mappers.TaskMapper;
 import com.accenture.codingtest.springbootcodingtest.model.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +47,9 @@ public class TaskController {
         }
     }
 
-    @PatchMapping("/{id}")
-    public TaskDto update(@RequestBody TaskDto taskDto, @PathVariable String id) {
-        Task task = taskService.update(taskMapper.convertTaskDtoToTaskEntity(taskDto), id);
+    @PatchMapping("{taskId}/status/")
+    public TaskDto updateStatus(@PathVariable String taskId, @RequestBody TaskDto taskDto) {
+        Task task = taskService.updateStatus(taskId,STATUS_ENUMS.valueOf(taskDto.getStatus()));
         return taskMapper.convertTaskEntityToTaskDto(task);
     }
 
